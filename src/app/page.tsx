@@ -1,15 +1,16 @@
+'use client'
 import styles from './page.module.css'
-import LoginForm from '@/app/()login/LoginForm'
-import { AuthProvider } from '@/components/AuthProvider'
+import { useSession } from 'next-auth/react'
+import LoginForm from '@/app/login/LoginForm'
 
 
 export default function Home() {
+  const { data: session } = useSession()
+  console.log(session)
 
   return (
-    <AuthProvider>
       <main className={styles.main}>
         <LoginForm />
       </main>
-    </AuthProvider>
   )
 }
