@@ -13,7 +13,8 @@ const authOptions: NextAuthOptions = {
         password: { label: 'password', type: "password" },
       },
       authorize(credentials) {
-        return { id: "1", name: "Admin", email: "admin@admin.com" };
+        if (!credentials) throw new Error('Error de credenciales')
+        return { id: "1", name: credentials.user || 'test' , rol: "admin" };
       },
     }),
   ],

@@ -1,27 +1,24 @@
 'use client'
+import './styles-login.scss'
 import { signIn, signOut } from "next-auth/react";
+import { useState } from 'react'
 
 
 export default function LoginForm () {
+  const [user, setUser] = useState('')
+  const [pass, setPass] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    signIn('credentials', { user: 'test', password: 'testPass', redirect: true,  callbackUrl: '/' })
-  }
-
-  const handleSignOut = (e) => {
-    e.preventDefault()
-    signOut()
+    signIn('credentials', { user, password: pass, redirect: true,  callbackUrl: '/' })
   }
 
   return (
-    <div>
-      <form action="">
-        <input type="text" placeholder='user'/><br/>
-        <input type="password" placeholder='pass'/><br/>
-        <button onClick={handleSubmit}>Click</button>
-        <button onClick={handleSignOut}>LOGOUT</button>
-      </form>
+    <div className='login'>
+      <p>Login</p>
+      <input type="text" placeholder='Usuario' value={user} onChange={(e) => setUser(e.target.value)}/><br/>
+      <input type="password" placeholder='Contraseña' value={pass} onChange={(e) => setPass(e.target.value)}/><br/>
+      <button onClick={handleSubmit}>Sign in</button>
     </div>
   )
 }

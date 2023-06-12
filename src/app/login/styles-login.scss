@@ -1,0 +1,31 @@
+
+.login {
+  border: 1px solid #595959;
+  background-color: #1a1a1a;
+  border-radius: 5px;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  input {
+    height: 40px;
+    padding-left: 10px;
+    font-size: 14px;
+    background-color: #d5d5d5;
+    border-radius: 5px;
+    border: 0;
+    color: black;
+  }
+
+  button {
+    background-color: #3a74e1;
+    height: 35px;
+    border-radius: 5px;
+    border: 0;
+  }
+}
