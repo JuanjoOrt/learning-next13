@@ -3,8 +3,11 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 
 const authOptions: NextAuthOptions = {
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
   },
+  secret: 'tokenSecret',
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -27,12 +30,13 @@ const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      session.user = token;
+      session.user = token.user;
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
-        token = user;
+        token.user = user;
+        token.rol = 'asd'
       }
       return token;
     },
