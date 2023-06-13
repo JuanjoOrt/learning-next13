@@ -11,13 +11,32 @@ const authOptions: NextAuthOptions = {
       credentials: {
         user: { label: 'user', type: "text" },
         password: { label: 'password', type: "password" },
+        id: { label: 'id', type: "text" }
       },
-      authorize(credentials) {
-        if (!credentials) throw new Error('Error de credenciales')
-        return { id: "1", name: credentials.user || 'test' , rol: "admin" };
+      async authorize(credentials) {
+        const data = await fetch(
+          `https://x8ki-letl-twmt.n7.xano.io/api:tPom_P5B/auth/login?email=test2@gmail.com&password=ABCDE123@`,
+          {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" }
+          })
+        const dataParsed = await data.json()
+        return { id: "1", name: dataParsed.user.email, token: dataParsed.authToken, rol: dataParsed.user.rol }
       },
     }),
   ],
+  callbacks: {
+    async session({ session, token }) {
+      session.user = token;
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token = user;
+      }
+      return token;
+    },
+  },
   pages: {
     signIn: '/'
   }
