@@ -5,7 +5,7 @@ const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
-    updateAge: 24 * 60 * 60, // 24 hours
+    updateAge: 10, // 24 hours
   },
   secret: 'tokenSecret',
   providers: [
@@ -36,13 +36,10 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.user = user;
-        token.rol = 'asd'
+        token.role = user.rol
       }
       return token;
     },
-  },
-  pages: {
-    signIn: '/'
   }
 };
 
