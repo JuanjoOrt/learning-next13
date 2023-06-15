@@ -15,7 +15,7 @@ export default function Header () {
       </div>
       <div className='header-content'>
         <HeaderItem href='/collection'>Collection</HeaderItem>
-        <HeaderItem href='#'>Form</HeaderItem>
+        <HeaderItem href='/form'>Form</HeaderItem>
         <User />
       </div>
     </header>

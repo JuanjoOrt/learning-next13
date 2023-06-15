@@ -1,0 +1,13 @@
+
+.home {
+  & .main-image {
+    height: 40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 50px;
+    }
+  }
+}
