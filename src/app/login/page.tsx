@@ -8,7 +8,7 @@ export default function LoginPage () {
   const [user, setUser] = useState('')
   const [pass, setPass] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault()
     signIn('credentials', { user, password: pass, redirect: true,  callbackUrl: '/' })
   }

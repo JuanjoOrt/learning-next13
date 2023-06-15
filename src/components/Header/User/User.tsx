@@ -18,7 +18,7 @@ export default function User () {
     };
   }, [show]);
 
-  const handleLogOut = (e) => {
+  const handleLogOut = (e: any) => {
     e.preventDefault()
     signOut()
   }
