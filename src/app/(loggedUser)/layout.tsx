@@ -1,17 +1,15 @@
 import '../globals.css'
-import './layout.css'
+import Header from '@/components/Header/Header'
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <div>
-      <header>
-        This is a header
-      </header>
-      {children}
-    </div>
+    <>
+        <Header />
+        {children}
+    </>
   )
 }
