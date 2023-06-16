@@ -7,7 +7,7 @@ import './detail-styles.scss'
 export default async function Detail ({ params: { id } }) {
   const session: any = await getServerSession(authOptions as any)
   const data = await getDetail(session.user.token, id)
-  console.log(data)
+
   return (
     <div  className='main-page'>
       <div className='detail'>
