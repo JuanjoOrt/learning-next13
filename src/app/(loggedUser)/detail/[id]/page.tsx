@@ -4,9 +4,9 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import Image from 'next/image'
 import './detail-styles.scss'
 
-export default async function Detail ({ params: { id } }) {
+export default async function Detail ({ params: { id } }: any) {
   const session: any = await getServerSession(authOptions as any)
-  const data = await getDetail(session.user.token, id)
+  const data: any = await getDetail(session.user.token, id)
 
   return (
     <div  className='main-page'>
@@ -15,7 +15,7 @@ export default async function Detail ({ params: { id } }) {
         <div>{data.description}</div>
         <div>precio: {data.price} €</div>
         <div>
-          {data.imageGallery.map(image => <Image key={image} width={200} height={250} alt='image' src={image} />)}
+          {data.imageGallery.map((image: any) => <Image key={image} width={200} height={250} alt='image' src={image} />)}
         </div>
       </div>
     </div>

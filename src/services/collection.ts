@@ -9,7 +9,7 @@ export async function getCollection ( token: string ) {
   })
 }
 
-export function getDetail (token, id) {
+export function getDetail (token: string, id: number) {
   return fetcher(`https://x8ki-letl-twmt.n7.xano.io/api:tPom_P5B/badcodetails/${id}`, {
     method: 'GET',
     headers: {
