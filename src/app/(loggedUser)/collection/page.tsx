@@ -1,17 +1,20 @@
-import { getServerSession, NextAuthOptions } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+'use client'
+
 import { getCollection } from '@/services/collection'
 import Item from '@/app/(loggedUser)/collection/Item'
+import { useSession } from 'next-auth/react'
+import { useEffect, useState } from 'react'
+import useSWR from 'swr'
 
+export default function Collection() {
+  const session: any = useSession()
+  const { data } = useSWR('/collection', () => getCollection(session.data.user.token) )
 
-export default async function Collection() {
-  const session: any = await getServerSession(authOptions as any)
-  const data = await getCollection(session.user.token)
-  console.log(data)
   return (
-    <div>
-      {data.map((item: any) => <Item key={item.id} title={item.name} />)}
-      <div>Collection</div>
+    <div className='main-page'>
+      <div className='collection'>
+        {data?.map((item: any) => <Item key={item.id} title={item.name} image={item.image} price={item.price} id={item.id} />)}
+      </div>
     </div>
   )
 }
